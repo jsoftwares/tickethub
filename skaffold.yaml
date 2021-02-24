@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2alpha2
+kind: Config
+deploy:
+  kubernetes:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: jeffonochie/auth
+      context: auth
+      docker:
+        dockerfile: Docker
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
