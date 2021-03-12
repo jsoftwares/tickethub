@@ -27,13 +27,14 @@ async (req: Request, res: Response) => {
     }
 
     const {name, email, password} = req.body;
-
-    const existingUser = await User.find({email});
+    
+    const existingUser = await User.findOne({email});
+    // res.json(existingUser);
     if (existingUser) {
         throw new BadRequestError('Email already in use.');
     }
     const user = User.build({name, email, password});
-    user.save();
+    await user.save();
 
     res.status(200).json({user});
 
