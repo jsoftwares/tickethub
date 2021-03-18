@@ -6,6 +6,7 @@ import cookieSession from 'cookie-session'
 
 import {currentUserRouter} from './routes/current-user';
 import {signupRouter} from './routes/signup';
+import {signinRouter} from './routes/signin';
 import {errorHandler} from './middlewares/error-handler';
 import {NotFoundError} from './errors/not-found-error';
 
@@ -22,6 +23,8 @@ app.use(
 
 app.use(currentUserRouter);
 app.use('/api', signupRouter);
+app.use(signinRouter);
+
 
 // This has to come before the errorHandler middleware
 // app.all('*', async (req, res, next) => {
