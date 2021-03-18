@@ -1,10 +1,11 @@
 import express, {Request, Response} from 'express';
-import {body, validationResult} from 'express-validator';
+import {body} from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { BadRequestError } from '../errors/bad-request-error';
-import {RequestValidationError} from '../errors/request-validation-error';
+// import {RequestValidationError} from '../errors/request-validation-error';
 import { User } from '../models/user';
+import {validateRequest} from '../middlewares/validate-request';
 
 const router = express.Router();
 
@@ -16,17 +17,17 @@ router.post('/users/signup', [
     body('password')
         .trim()
         .isLength({min:5, max:20}).withMessage('Password must be between 5 to 20 characters')
-], 
+], validateRequest, 
 async (req: Request, res: Response) => {
-    const errors = validationResult(req);
+
+    /**Moved check to validateRequest[validate-request.ts] middleware helper */
+    // const errors = validationResult(req);
     // check if an error results from validating input, if yes, convert the errors object to an array of errors
     // and send that as a response to the user.
-    if (!errors.isEmpty()) {
+    // if (!errors.isEmpty()) {
 
-        // res.status(400).send(errors.array());
-        // throw new Error(errors.array());
-        throw new RequestValidationError(errors.array());
-    }
+    //     throw new RequestValidationError(errors.array());
+    // }
 
     const {name, email, password} = req.body;
     
@@ -49,7 +50,7 @@ async (req: Request, res: Response) => {
     // Store JWT in session object
     // req.session.token = userJwt;
     req.session = {
-        token: userJwt
+        jwt: userJwt
     };
 
     res.status(200).json({user});
