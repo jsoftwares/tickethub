@@ -9,7 +9,7 @@ import {validateRequest} from '../middlewares/validate-request';
 
 const router = express.Router();
 
-router.post('/users/signup', [
+router.post('/api/users/signup', [
     body('name')
         .isLength({min:4, max:50}).withMessage('Name must be between 4 to 20 characters'),
     body('email')

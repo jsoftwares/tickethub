@@ -18,11 +18,11 @@ app.use(
     cookieSession({
         signed: false,
         secure: true
-    })
+    });
 );
 
 app.use(currentUserRouter);
-app.use('/api', signupRouter);
+app.use(signupRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 

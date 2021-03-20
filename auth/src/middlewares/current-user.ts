@@ -1,4 +1,6 @@
-/**MIDDELWARE to extract the JWT payload from user session and set it on a new req.currentUser property */
+/**MIDDELWARE to extract the JWT payload from user session and set it on a new req.currentUser property
+this middleware is needed to set the login property for a user.
+ */
 
 import express, {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';

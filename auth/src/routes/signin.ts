@@ -13,7 +13,7 @@ router.post('/api/users/signin', [
             .isEmail().withMessage('Email must be valid'),
         body('password')
             .trim()
-            .notEmpty().withMessage('You must supply a passord.')
+            .notEmpty().withMessage('You must supply a passord')
     ], validateRequest,
     async (req: Request, res: Response) => {
     
@@ -30,7 +30,7 @@ router.post('/api/users/signin', [
     // User found, compare supplied PWD with User PWD
     const passwordMatch = await Password.compare(user.password, password);
     if (!passwordMatch) {
-        throw new BadRequestError('Invalid credentials.')
+        throw new BadRequestError('Invalid credentials')
     }
     
     // SUCCESS: Create JWT token, store it in Session and send back response
