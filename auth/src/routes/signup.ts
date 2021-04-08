@@ -53,7 +53,7 @@ async (req: Request, res: Response) => {
         jwt: userJwt
     };
 
-    res.status(200).json({user});
+    res.status(201).json({user});
 
 });
 
