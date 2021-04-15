@@ -6,6 +6,8 @@ import cookieSession from 'cookie-session'
 import {errorHandler, NotFoundError, currentUser} from '@exchangepoint/common';
 import {createTicketRouter} from './routes/new';
 import { showTicketRouter } from './routes/show';
+import {indexTicketRouter}  from './routes/index';
+import {updateTicketRouter}  from './routes/update';
 
 const app = express();
 app.set('trust proxy', true);
@@ -27,6 +29,8 @@ app.use(currentUser);
 
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 // This has to come before the errorHandler middleware
 // Use express-async-error (ensures that if we throw an error inside an async function that express listens for it)
