@@ -18,7 +18,7 @@ const start = async () => {
         console.error(err);
     }
 
-    app.listen(3000, () => console.log('Tickets service is running on  Port 3000'));
+    app.listen(3000, () => console.log('Tickets service is running on  Port 3000 ', new Date()));
 }
 
 start();

@@ -84,7 +84,7 @@ it('returns 400 if an invalid title or price is supplied', async () => {
         .expect(400);
 });
 
-it('returns updates the ticket upon valid inputs ', async () => {
+it('updates the ticket upon valid inputs ', async () => {
     const cookie = global.signin();
     const response = await request(app)
         .post('/api/tickets')

@@ -23,6 +23,9 @@ const useRequest = ({url, method, body, onSuccess}) => {
                     </ul>
                 </div>
             );
+            setTimeout(() => {
+                setErrors(null);
+            }, 5000);
             // throw err;
         }
     }

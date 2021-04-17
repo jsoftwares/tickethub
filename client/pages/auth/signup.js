@@ -42,9 +42,9 @@ const Signup = () => {
 
     return(
         <div className="container d-flex">
-            <div className="col-sm-8 col-md-6 m-auto">
+            <div className="col-sm-8 col-md-6 m-auto mt-3">
 
-                <h2 className="mb-4 text-center">Signup</h2>
+                <h3 className="mb-4 text-center">Signup</h3>
 
                 {/* {errors.length > 0 && } */}
                 {errors}
