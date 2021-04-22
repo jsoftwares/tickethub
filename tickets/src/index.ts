@@ -11,6 +11,17 @@ const start = async () => {
     }
     try {
         await natsWrapper.connect('ticketing', 'tickets-publisher1', 'http://nats-srv:4222');
+        /**Not listening 4 close signal inside natswrapper cos we have codes in there from other hidden classes
+         * that can cause our program to close; it's not a good design decision, it's better to catch such close
+         * trigger from a central location.
+         */
+        natsWrapper.client.on('close', () => {
+            console.log('NATS client connection closed!');
+            process.exit();
+        });
+        process.on('SIGINT', () => natsWrapper.client.close());
+        process.on('SIGTERM', () => natsWrapper.client.close());
+
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
         });
