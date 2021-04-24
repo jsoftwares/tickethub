@@ -13,12 +13,15 @@ declare global{
     }
 }
 
+/** makes sure if our test needs to import d natWrapper file, it should import d mock natWrapper we created.
+ * Adding it here we don't have to add it in each individual file  */  
+jest.mock('../nats-wrapper');
 
 let mongo: any;
 // Hook to run before all test script starts
 beforeAll( async () => {
     process.env.JWT_KEY = "asdfgh";
-    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
     mongo = new MongoMemoryServer();
     const mongoUri = await mongo.getUri();
@@ -31,6 +34,7 @@ beforeAll( async () => {
 
 // Hook to run before each test script starts
 beforeEach( async () => {
+    jest.clearAllMocks();
     const collections = await mongoose.connection.db.collections();
     for (let collection of collections){
         await collection.deleteMany({});

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Unity Bank Plc</title>
+	<style type="text/css">
+		#outlook a{
+			padding:0;
+		}
+		body{
+			width:100%;
+			background-color:{if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if};
+		}
+		.ReadMsgBody{
+			width:100%;
+		}
+		.ExternalClass{
+			width:100%;
+		}
+		table
+		{
+			border-collapse: collapse;
+		}
+
+		@media only screen and (max-width: 640px)  {
+			.deviceWidth
+			{
+				width:95% !important;
+			}
+			.deviceWidthInner
+			{
+				width:100% !important;
+			}
+			.center
+			{
+				text-align: center!important;
+			}
+			td[class="force-col"],
+			td[class="force-col-center"]
+			{
+				display: block !important;
+				width: 100% !important;
+				clear: both;
+			}
+			.logo
+			{
+				width: 100% !important;
+				display: block;
+				margin: 0 auto;
+				padding-left: 0px !important;
+			}
+			.intro-img
+			{
+				width: 100% !important;
+			}
+			.section-img
+			{
+				width: 95% !important;
+			}
+			.buttons
+			{
+				padding-left: 10px !important;
+			}
+		}
+
+		@media only screen and (max-width: 479px) {
+			.deviceWidth
+			{
+				width:95%!important;
+			}
+			.center
+			{
+				text-align: center!important;
+			}
+		}
+		i img
+		{
+			max-width: 35px;
+			position: relative;
+
+		}
+	</style>
+</head>
+<body style="margin:0;padding:0; background-color:{if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if};">
+	<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" bgcolor="{if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if}">
+		<tr>
+			<td>
+
+				<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth" bgcolor="{if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if}">
+					<tr>
+						<td>
+							<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+								<tr>
+									<td style="font-size: 1px; color: {if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if};"><a href="#" style="color: {if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if}; text-decoration: none;">{$job->pre_header}</a></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					{if !$smarty.request.hide_browser_link}
+						<tr>
+							<td>
+								<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+									<tr>
+
+										<td valign="top" height="10" align="center" valign="middle" style="
+											padding: 10px 0px;
+											font-size:12px;
+											color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#010101{/if};
+											font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+											font-weight: bold;
+										">
+										--
+										<a href="%viewbrowserlink%" style="
+											color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#010101{/if};
+											text-decoration:none;
+										">
+										View in browser.</a></td>
+
+									</tr>
+								</table>
+							</td>
+						</tr>
+					{/if}
+				</table>
+
+				<!-- Logo -->
+
+									{if $job->intro->image}
+						<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth" bgcolor="#f1f1f1">
+							<tr>
+								<td>
+									<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+										<tr>
+											<td> </td>
+										</tr>
+									</table>
+								</td>
+
+							</tr>
+
+							<tr>
+								<td>
+
+									<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth">
+										<tr>
+											<td align="center" valign="middle" class="force-col">
+												<a href="{$job->intro->url}" target="_blank">
+												<img src="{$job->intro->image->fullpath}" width="180" height="auto" style="max-width: 180px;" alt="United Bank of Africa Plc" border="0" class="logo" /></a>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+										<tr>
+											<td> </td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					{/if}
+				
+				
+				<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth">
+					<tr>
+						<td>
+							<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+								<tr>
+									<td> </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+
+				<!-- Campaign Body Start -->
+
+				<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth" style="border: 1px solid {if $job->intro->border_color}#{$job->intro->border_color}{else}#cccccc{/if};">
+
+					{foreach $job->getSections(1) as $section}
+						<tr>
+							<td>
+								<table border="0" cellspacing="0" cellpadding="0" align="center" width="600" class="deviceWidthInner" bgcolor="{if $section->background_color}#{$section->background_color}{else}#ffffff{/if}">
+									{if $section->image->id}
+										<tr>
+											<td>
+												<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidthInner">
+
+														<tr>
+															<td align="center" style="text-align: center;">
+																<a href="{$section->url}" target="_blank">
+																	<img src="{$section->image->thumb_path('600x', '0')}" class="section-img" border="0" width="600" />
+																</a>
+															</td>
+														</tr>
+
+												</table>
+											</td>
+										</tr>
+									{/if}
+
+									<tr>
+										<td>
+											<table width="560" align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidthInner">
+
+												{if $section->title}
+													<tr>
+														<td> </td>
+													</tr>
+
+													<tr>
+														<td width="560" style="
+															font-size: 22px;
+															line-height: 28px;
+															color: {if $section->title_color}#{$section->title_color}{else}#222222{/if};
+															font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+															font-weight: bold;
+															padding: 0px 10px;
+														">
+													{$section->title}</td>
+													</tr>
+												{/if}
+
+												{if $section->description}
+
+													<tr>
+														<td> </td>
+													</tr>
+													<tr>
+														<td width="560" style="
+															font-size:16px;
+															color: {if $section->text_color}#{$section->text_color}{else}#222222{/if};
+															font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+															line-height: 22px;
+															padding: 0px 10px;
+														">
+													{$section->description}</td>
+													</tr>
+												{/if}
+
+												<tr>
+													<td> </td>
+												</tr>
+
+											</table>
+										</td>
+									</tr>
+
+									{if $section->button1->title}
+										<tr>
+											<td valign="top" width="560" align="center" class="buttons">
+												<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: separate;">
+
+													<tr>
+														<td width="auto" class="force-col" style="
+															background-color:{if $section->button1->background_color}#{$section->button1->background_color}{else}#CD1308{/if};
+															border: 1px solid {if $section->button1->border_color}#{$section->button1->border_color}{else}#8f8f8f{/if};
+															border-radius:3px;
+															font-size:18px;
+															font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+															color:{if $section->button1->text_color}#{$section->button1->text_color}{else}#ffffff{/if};
+															font-weight: normal;
+															padding: 12px 0px;
+															text-align: center;
+														">
+															<a href="{$section->button1->href}" style="text-decoration: none; color:{if $section->button1->text_color}#{$section->button1->text_color}{else}#ffffff{/if};">
+																   {$section->button1->title}   </a>
+														</td>
+													{if $section->button2->title}
+														<td width="15" class="force-col"> </td>
+														<td width="auto" class="force-col" style="
+															background-color:{if $section->button2->background_color}#{$section->button2->background_color}{else}#CD1308{/if};
+															border: 1px solid {if $section->button2->border_color}#{$section->button2->border_color}{else}#8f8f8f{/if};
+															border-radius:3px;
+															font-size:18px;
+															font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+															color:{if $section->button2->text_color}#{$section->button2->text_color}{else}#ffffff{/if};
+															font-weight: normal;
+															padding: 12px 0px;
+															text-align: center;
+														">
+															<a href="{$section->button2->href}" style="text-decoration: none; color:{if $section->button2->text_color}#{$section->button2->text_color}{else}#ffffff{/if};">
+																   {$section->button2->title}   </a>
+														</td>
+													{/if}
+													</tr>
+
+													<tr>
+														<td colspan="3"> </td>
+													</tr>
+
+												</table>
+											</td>
+										</tr>
+									{/if}
+
+									<tr>
+										<td>
+											<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidthInner">
+												<tr>
+													<td> </td>
+												</tr>
+											</table>
+										</td>
+
+									</tr>
+
+								</table>
+							</td>
+						</tr>
+					{/foreach}
+				</table>
+				<!-- Jeff 1 -->
+                {*
+                    <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+                        <tr>
+                            <td style="background-color: #FFFFFF;">
+                                <table width="500" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+                                    <tbody style="background-color: #FFFFFF; text-align: center;">
+                                        <tr>
+                                            <td class="force-col" style="width: 42%; background-color: #FFFFFF; color: #808080; padding: 40px 0; text-align: center;font-size:14px;font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;">Choose convenience
+                                            </td>
+                                            <td style="background-color: #FFFFFF;" align="left" valign="middle"><a href="https://m.me/ubachatbanking/" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1564038874/vrs/uba/chatbanking.png" width="35" height="auto"></i></a>
+                                            </td>
+                                            <td style="background-color: #FFFFFF;" align="left" valign="middle"><a href="https://www.ubagroup.com/nigeria/personal-banking/digital-banking/mobile-banking/" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1564038874/vrs/uba/mobilebanking.png" width="35" height="auto"></i></a>
+                                            </td>
+                                            <td style="background-color: #FFFFFF;" align="left" valign="middle"><a href="https://www.ubagroup.com/nigeria/personal-banking/digital-banking/magic-banking/" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1564038874/vrs/uba/magicbaning.png" width="35" height="auto"></i></a>
+                                            </td>
+                                            <td style="background-color: #FFFFFF;" align="left" valign="middle"><a href="https://ibank.ubagroup.com/" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1564038874/vrs/uba/internetbanking.png" width="35" height="auto"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                *}
+				<!-- Jeff 1 End-->
+
+				<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth">
+					<tr>
+						<td>
+							<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+								<tr>
+									<td></td>
+								</tr>
+							</table>
+						</td>
+
+					</tr>
+				</table>
+
+			<!-- Footer -->
+
+			<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth" bgcolor="{if $job->intro->background_color}#{$job->intro->background_color}{else}#EEEEEE{/if}" style="border: 1px solid {if $job->intro->border_color}#{$job->intro->border_color}{else}#e9e9e9{/if};">
+				<tr>
+					<td>
+						<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+
+									{if $job->intro->image}
+					<tr>
+						<td>
+
+							<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth">
+								<tr>
+									<td align="center" valign="middle" class="force-col">
+										<a href="{$job->intro->url}" target="_blank">
+										<img src="{$job->intro->image->fullpath}" width="100" height="auto" style="max-width:100px;" alt="United Bank of Africa Plc" border="0" class="logo" /></a>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					{/if}
+
+				<!-- Jeff 2 -->
+				<tr>
+					<td>
+						<table width="560" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td>
+									<table width="280" border="0" cellspacing="0" cellpadding="0"  class="deviceWidth">
+										<tr>
+											<td align="middle" valign="middle" style="padding: 40px 0;">
+												<a href="https://www.instagram.com/unitybankplc/" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1563509579/vrs/instagram-black.png" width="35" height="auto"></i></a>
+											</td>
+											<td align="middle" valign="middle">
+												<a href="https://twitter.com/UnityBankPlc" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1563509579/vrs/twitter-black.png" width="35" height="auto"></i></a>
+											</td>
+											<td align="middle" valign="middle">
+												<a href="https://www.youtube.com/channel/UCt04G86OgaWXe1X_beZn1sw" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1563509579/vrs/youtube-black.png" width="35" height="auto"></i></a>
+											</td>
+											<td align="middle" valign="middle">
+												<a href="https://www.facebook.com/unitybank" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1563509579/vrs/facebook-black.png" width="35" height="auto"></i></a>
+											</td>
+											{* <td align="middle" valign="middle">
+												<a href="https://www.youtube.com/channel/UCt04G86OgaWXe1X_beZn1sw" target="_blank" rel="nofollow noopener"><i><img src="https://res.cloudinary.com/www-exchangepointgroup-com/image/upload/v1563509579/vrs/redtv-black.png" width="35" height="auto"></i></a>
+											</td>
+                                            *}
+										</tr>
+									</table>
+								</td>
+								<td style="align-items: center;" align="left">
+									<table width="270" border="0" cellspacing="0" cellpadding="0"  class="deviceWidth">
+										<tr>
+											<td style="font-family: 'Myriad Pro',sans-serif; color: #404040; font-style: italic;" align="right" valign="middle">
+												<p>Your bank</p>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!-- Jeff 2 End -->
+				<tr>
+					<td>
+						<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td>
+												<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td></td>
+							</tr>
+							<tr>
+								<td align="center" style="
+									color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if};
+									font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+									font-size: 14px;
+									line-height: 20px;
+									font-weight: normal;
+								">
+																			<strong>UNITY BANK PLC</strong>
+																												|
+									
+																			<!-- 57 Marina, Lagos Island, Lagos, Nigeria -->
+																												|
+									
+																		
+																		
+																			<a href="www.unitybankng.com" style="text-decoration:none; color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if};"><strong>www.unitybankng.com/</strong></a>
+																	</td>
+							</tr>
+						</table>
+											</td>
+				</tr>
+
+				<tr>
+					<td>
+						<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td> </td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<table width="540" align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidth">
+							<tr>
+								<td width="540" align="center" class="afskra" style="
+									padding-top: 30px;
+									padding-bottom: 10px;
+									border-top: 1px solid {if $job->intro->text_color}#{$job->intro->text_color}{else}#cccccc{/if};
+									color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if};
+									font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+									font-size: 12px;
+								">
+								<a style="color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if}; font-weight:bold; text-decoration: none;" href="%unregisterlink%">[Update Preference]</a></td>
+							</tr>
+							<tr>
+								<td width="540" align="center" class="afskra" style="
+									padding-bottom: 10px;
+									color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if};
+									font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+									font-size: 12px;
+								">
+								This email was sent to the email address: <a href="mailto:%recipient%" style="color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if}; font-weight:bold; text-decoration: none;">%recipient%</a></td>
+							</tr>
+							{*<tr>
+								<td width="540" align="center" class="afskra" style="
+
+									color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if};
+									font-family: 'century gothic', 'Roboto', Helvetica, Arial, sans-serif;
+									font-size: 12px;
+								">
+								This mail was sent from a communication system: <a style="color: {if $job->intro->text_color}#{$job->intro->text_color}{else}#222222{/if}; font-weight:bold; text-decoration: none;" href="https://www.africprudential.com/">VRS</a>
+							</td>
+							</tr>*}
+							<tr>
+								<td>%tracking%</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			<table width="600" align="center" border="0" cellspacing="0" cellpadding="0" class="deviceWidth">
+				<tr>
+					<td>
+						<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth">
+							<tr>
+								<td> </td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
