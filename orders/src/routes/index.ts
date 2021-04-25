@@ -1,11 +1,11 @@
 /**Show all orders belonging to the current user */
 
-import express from 'express'
+import express, { Request, Response} from 'express'
 import { isAuth } from '@exchangepoint/common';
 
 const router = express.Router();
 
-router.get('/api/orders', async (req, res) => {
+router.get('/api/orders', async (req:Request, res:Response) => {
     res.send({});
 });
 
