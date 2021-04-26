@@ -27,4 +27,5 @@ class NatsWrapper {
     }
 }
 
+// export a singleton nats client
 export const natsWrapper = new NatsWrapper();

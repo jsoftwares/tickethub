@@ -3,6 +3,8 @@
 import express, { Request, Response} from 'express'
 import { isAuth, NotAuthorizedError, NotFoundError, OrderStatus } from '@exchangepoint/common';
 import { Order } from '../models/order';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -21,6 +23,13 @@ router.delete('/api/orders/:orderId', isAuth, async (req: Request, res: Response
     await order.save();
 
     // publish an event to say order was cancelled
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+        id: order.id,
+        ticket: {
+            id: order.ticket.id
+        }
+    });
+
 
     res.status(205).send(order);
 });
