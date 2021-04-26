@@ -12,7 +12,7 @@ declare global{
 }
 
 /** makes sure if our test needs to import d natWrapper file, it should import d mock natWrapper we created.
- * Adding it here we don't have to add it in each individual file  */  
+ * Adding it here we don't have to add it in each individual test file  */  
 jest.mock('../nats-wrapper');
 
 let mongo: any;
