@@ -1,12 +1,28 @@
 /**Delete a particular orders belonging to the current user */
 
 import express, { Request, Response} from 'express'
-import { isAuth } from '@exchangepoint/common';
+import { isAuth, NotAuthorizedError, NotFoundError, OrderStatus } from '@exchangepoint/common';
+import { Order } from '../models/order';
 
 const router = express.Router();
 
-router.delete('/api/orders/:orderId', async (req: Request, res: Response) => {
-    res.send({});
+router.delete('/api/orders/:orderId', isAuth, async (req: Request, res: Response) => {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId);
+    if (!order) {
+        throw new NotFoundError();
+    }
+    if (order.userId !== req.currentUser!.id) {
+        throw new NotAuthorizedError();
+    }
+
+    order.status = OrderStatus.Cancelled;
+    await order.save();
+
+    // publish an event to say order was cancelled
+
+    res.status(205).send(order);
 });
 
 export { router as deleteOrderRouter }; 

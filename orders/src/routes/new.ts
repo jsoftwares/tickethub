@@ -25,7 +25,6 @@ router.post('/api/orders', isAuth, [
 
     // Find the ticket the user is trying to order in the DB
     const ticket = await Ticket.findById(ticketId);
-    console.log(ticket);
     
     if (!ticket) {
         throw new NotFoundError();
