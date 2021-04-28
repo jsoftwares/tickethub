@@ -26,6 +26,7 @@ const start = async () => {
             process.env.NATS_CLIENT_ID,
             process.env.NATS_URL
         );
+        console.log('NATS client connected on Order service');
         
         /**Not listening 4 close signal inside natswrapper cos we have codes in there from other hidden classes
          * that can cause our program to close; it's not a good design decision, it's better to catch such close

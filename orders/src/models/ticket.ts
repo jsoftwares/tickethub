@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Order, OrderStatus } from './order'; 
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface TicketAttrs {
     id: string; // adding ID so that we can maintain same ID as d original ticket doc in Ticket service
@@ -8,11 +9,12 @@ interface TicketAttrs {
 }
 
 
-// Exporting this interface so that it can be used to define the Type for our Ticket ref in Order model
+// Exporting this interface so that it can be used to define the Type for our Ticket ref in order model
 export interface TicketDoc extends mongoose.Document {
     // id: string;
     title: string;
     price: number;
+    version: number;
     isReserved(): Promise<boolean>;  //define d Type for a method we want to be able to access on each document
 }
 
@@ -39,6 +41,8 @@ const ticketSchema = new mongoose.Schema({
     }
 });
 
+ticketSchema.set('versionKey', 'version');
+ticketSchema.plugin(updateIfCurrentPlugin);
 
  /**docs in MongoDB is stored with d _id. its only when we take d record and turn it to JSON to be transmitted
    * over an Event that _id gets transformed to id (done by d transform() method here). if we save data gotten
@@ -47,7 +51,6 @@ const ticketSchema = new mongoose.Schema({
    * we take that id and assign it to the new record as _id
    */
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
- 
     return new Ticket({
       _id: attrs.id,
       title: attrs.title,
