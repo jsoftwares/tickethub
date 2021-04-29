@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { OrderStatus} from '@exchangepoint/common';
 import { TicketDoc } from './ticket';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 export { OrderStatus }; //with this we can access OrderStaus from this model hence we can do 1 import line on any file in Orders where we need to import both
 
@@ -15,6 +16,7 @@ interface OrderDoc extends mongoose.Document {
     userId: string;
     status: OrderStatus;
     expiresAt: Date;
+    version: number;
     ticket: TicketDoc;
 }
 
@@ -51,6 +53,8 @@ const orderSchema = new mongoose.Schema({
     }
 });
 
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 orderSchema.statics.build = (attrs: OrderAttrs) => {
     return new Order(attrs);
 };
