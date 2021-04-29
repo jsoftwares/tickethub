@@ -9,17 +9,21 @@ interface TicketAttrs {
 }
 
 
-// Exporting this interface so that it can be used to define the Type for our Ticket ref in order model
+// Exporting this interface so that it can be used as the Type definition for our Ticket ref in order model
 export interface TicketDoc extends mongoose.Document {
-    // id: string;
     title: string;
     price: number;
     version: number;
     isReserved(): Promise<boolean>;  //define d Type for a method we want to be able to access on each document
 }
 
+/**findByEvent() as defined below takes a data object & runs a query ti find a ticket with a given ID & version
+ *  that is 1 less than what d method received. It returns a Promise that resolves with either a TicketDoc or
+ * null 
+  */
 interface TicketModel extends mongoose.Model<TicketDoc> {
-    build(attrs: TicketAttrs): TicketDoc
+    build(attrs: TicketAttrs): TicketDoc,
+    findByEvent(data: {id: string; version: number}): Promise<TicketDoc | null>;
 }
 
 const ticketSchema = new mongoose.Schema({
@@ -55,6 +59,13 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
       _id: attrs.id,
       title: attrs.title,
       price: attrs.price
+    });
+};
+
+ticketSchema.statics.findByEvent = (data: {id: string; version: number}) => {
+    return Ticket.findOne({
+        _id: data.id,
+        version: data.version -1
     });
 };
 

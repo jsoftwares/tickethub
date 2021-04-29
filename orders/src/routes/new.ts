@@ -34,8 +34,9 @@ router.post('/api/orders', isAuth, [
 
     // Make sure the ticket is not already reserved
 
-    /** LOGIC MOVED added as a method ticket document in Ticket model bcos we may want to check in multiple 
-     * files if a ticket is reserved
+    /** LOGIC MOVED: added as a method to ticket document in Ticket model bcos we may want to check in 
+     * multiple files if a ticket is reserved & repeating this code wouldn't be a good idea
+     * 
     const existingOrder = Order.findOne({
         ticket: ticket,
         status: {
