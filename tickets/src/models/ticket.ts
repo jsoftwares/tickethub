@@ -16,6 +16,7 @@ interface TicketDoc extends mongose.Document {
     price: number;
     userId: string;
     version: number;
+    orderId?: string;
 }
 
 interface TIcketModel extends mongose.Model<TicketDoc>{
@@ -34,6 +35,9 @@ const ticketSchema = new mongose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    orderId: {
+        type: String    //used to track if an ticket has been ordered on not. Ordered ticket should be prevented from editting
     }
 }, {
     toJSON: {
