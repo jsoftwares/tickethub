@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expiration
+  template:
+    metadata:
+      labels:
+        app: expiration
+    spec:
+      containers:
+        - name: expiration
+          image: jeffonochie/expiration
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name #gives our NATS client same name as d POD. Hence diff replica can have diff client ID for NATS, which can be helpful for logging
+            - name: NATS_URL  #this block tells expiration service how to connect to redis
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: REDIS_HOST
+              value: expiration-redis-srv
+
+#we do not need a service bcos this service will not be directly contacted by any other part of this application;
+# there'd be no network request going directly to this service. All that is needed is creating d expiration pod
+#and it's going to communicate with everything else through NATS streaming server
