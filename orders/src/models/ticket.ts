@@ -84,7 +84,7 @@ ticketSchema.methods.isReserved = async function() {
         }
     });
 
-    //if we get NULL ! swtiches it to TRUE then ! to false. if there's an existing order, !! switches it to FALSE, TRUE  
+    //if we get NULL ! swtiches it to TRUE then ! to false. if there's an existing order, !! switches it to NULL, TRUE  
     //this helps us return a a boolean from this method. equivalent to existingOrder ? true : false
     return !!existingOrder;
 };

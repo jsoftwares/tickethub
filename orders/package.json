@@ -1,6 +1,6 @@
 {
     "name": "orders",
-    "version": "1.0.0",
+    "version": "1.0.12",
     "description": "An Orders microservice to manage tickets purchase; register buyers intent & block ticket for X-mins.",
     "main": "index.js",
     "scripts": {
