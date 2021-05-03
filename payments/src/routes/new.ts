@@ -46,7 +46,7 @@ validateRequest, async (req:Request, res:Response) => {
     await payment.save();
 
     //TODO send notification to customer (Publish an event that would be listened by a notification service)
-    await new PaymentCreatedPublisher(natsWrapper.client).publish({
+    new PaymentCreatedPublisher(natsWrapper.client).publish({
         id: payment.id,
         orderId: payment.orderId,
         stripeId: payment.id,
