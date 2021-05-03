@@ -4,6 +4,8 @@ import { isAuth, validateRequest, BadRequestError, NotFoundError, NotAuthorizedE
 import { stripe } from '../stripe';
 import { Order } from '../models/order'; 
 import { Payment } from '../models/payment';
+import { PaymentCreatedPublisher } from '../events/publishers/payment-created-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -44,8 +46,13 @@ validateRequest, async (req:Request, res:Response) => {
     await payment.save();
 
     //TODO send notification to customer (Publish an event that would be listened by a notification service)
+    await new PaymentCreatedPublisher(natsWrapper.client).publish({
+        id: payment.id,
+        orderId: payment.orderId,
+        stripeId: payment.id,
+    });
 
-    res.status(201).send({success: true});
+    res.status(201).send({id: payment.id});
 });
 
 export { router as createChargeRouter };
