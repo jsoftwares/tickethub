@@ -1,6 +1,6 @@
 /**CONFIGURES AXIOS BASED ON THE CALLING AGENT 
  * anytime we want to make a request from getInitialProps(), we first build d request to set base URL & headers
- * then use the returned client to make our request
+ * then use the returned client to make our request in our component
 */
 
 import axios from 'axios';
