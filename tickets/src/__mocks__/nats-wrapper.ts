@@ -11,12 +11,13 @@
  * this natsWrapper, we need to make sure it return an object that has client property as an object has publish
  * function that take a channel, data, callback & invoke that callback right away.
  * To ensure new & update tests files are publishing events to NATS we need to ensure our mock function gets 
- * executed rather than just faking d call of d callback which shows every went well. To do this we'll provide a
+ * executed rather than just faking d call of d callback which shows everything went well. To do this we'll provide a
  * mock function to publish (a mock function a fake function that allows us to make tests/expectations around it
- * so we can expect in out test that a mock function gets executed or executed with some arguments.). So we
- * created this function with JEST.FN which creates a new function & assigns it to publish. THe function can
+ * so we can expect in our test that a mock function gets executed or is executed with some arguments.). So we
+ * created this function with JEST.FN which creates a new function & assigns it to publish. The function can
  * be called from any part of our code & it keeps track of weather it's been called, what arguments bas been
- * provided so that we can make some expectations aroud it 
+ * provided, so that we can make some expectations aroud it. .mockImplementation() ensured that whenever we called
+ * d publish() funtion, d method inside it is executed
   */
 export const natsWrapper = {
     client: {
