@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 declare global{
     namespace NodeJS {
         interface Global {
-            signin(): string[]
+            signin(id?: string): string[]
         }
     }
 }
@@ -14,6 +14,8 @@ declare global{
 /** makes sure if our test needs to import d natWrapper file, it should import d mock natWrapper we created.
  * Adding it here we don't have to add it in each individual test file  */  
 jest.mock('../nats-wrapper');
+
+process.env.STRIPE_KEY = 'sk_test_51I3FoxIzRi6j3ld4aE1zOLc7KAZRS9xRM81bvX7AOTtUL8Ex0Yhh394Yt943ROOT466C4udr3dYXnlRYOtwvRL6W00qUeUD9Xc';
 
 let mongo: any;
 // Hook to run before all test script starts
@@ -45,29 +47,11 @@ afterAll( async () => {
     await mongoose.connection.close();
 })
 
-/** Ticket service does not contain a signup route like auth, hence below signup implementation would not work
-*To avaoid interservice dependency during test, I mimick creation of cookie which houses the JWT & return it
-*so we use that cookie to login to d app while running test for tickets
-*/
-global.signin = () => {
-    // const email = 'jeff@test.com',
-    // password = 'pass1234',
-    // name = 'Jeffrey'
-    
-    // const response = await request(app)
-    //     .post('/api/users/signup')
-    //     .send({
-    //         name, email, password
-    //     })
-    //     .expect(201);
-
-    // const cookie = response.get('Set-Cookie');
-    // return cookie;
-
-
+global.signin = (id?: string) => {
+ 
     // Build a JWT payload
     const payload = {
-        id: new mongoose.Types.ObjectId().toHexString(),
+        id: id || new mongoose.Types.ObjectId().toHexString(),
         name: 'Jeffrey Onochie',
         email: 'jeff.ict@gmail.com'
     }

@@ -41,10 +41,6 @@ const setup = async () => {
 
 it('updates the status of the order', async () => {
     const { listener, order, data, msg } = await setup();
-    console.log(order);
-    console.log(data);
-    
-    
     
     await listener.onMessage(data, msg);
     
