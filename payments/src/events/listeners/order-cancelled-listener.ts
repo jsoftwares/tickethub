@@ -8,9 +8,6 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     queueGroupName = queueGroupName;
 
     async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
-        /**for this Order it doesn't a diff to search for it version also bcos we have only 2 events (OrderCreated &
-         * OrderCancelled) here & there a no intermediate event that would change d version number. So we could just
-         * use findById but i'm using it here in case in d future a new event that modifies Order is introduced */
         const order = await Order.findOne({
             _id: data.id,
             version: data.version - 1
