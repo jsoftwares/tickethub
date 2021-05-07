@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import  Router from 'next/router'
+import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 
 import useRequest from '../../hooks/use-request';
 
@@ -46,28 +47,23 @@ const Signup = () => {
 
                 <h3 className="mb-4 text-center">Signup</h3>
 
-                {/* {errors.length > 0 && } */}
-                {errors}
-
                 <form onSubmit={ onSubmit }>
-                    {/* 2 column grid layout with text inputs for the first and last names */}
                     <div className="form-outline mb-4">
-                        <input type="text" id="name" className="form-control" value={name} onChange={ e=>setName(e.target.value) } />
-                        <label className="form-label" htmlFor="name">Full name</label>
+                        <MDBInput label='Your name' type='text' value={name} onChange={ e=>setName(e.target.value) } />
                     </div>
 
                     {/* Email input */}
                     <div className="form-outline mb-4">
-                        <input type="email" id="email" className="form-control" value={email} onChange={ e=>setEmail(e.target.value) } />
-                        <label className="form-label" htmlFor="email">Email address</label>
+                        <MDBInput label='Email' type='text' value={email} onChange={ e=>setEmail(e.target.value) } />
                     </div>
 
                     {/* Password input */}
                     <div className="form-outline mb-4">
-                        <input type="password" id="password" className="form-control" value={password} onChange={ e=>setPassword(e.target.value) } />
-                        <label className="form-label" htmlFor="password">Password</label>
+                        <MDBInput label='Password' type='password' value={password} onChange={e => setPassword(e.target.value)} />
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block mb-4">Sign up</button>
+                    {/* {errors.length > 0 && } */}
+                    {errors}
+                    <MDBBtn type="submit" color='primary btn-block'>Sign up</MDBBtn>
                 </form>
             </div>
         </div>

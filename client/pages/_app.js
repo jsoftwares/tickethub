@@ -1,14 +1,15 @@
-// import 'bootstrap/dist/css/bootstrap.min.css'
-import '../assets/mdb/css/mdb.min.css'
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+// import 'mdbreact/dist/css/mdb.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import buildClient from '../api/build-client';
 import Header from '../components/Header';
 
-/**pageProps eventually shows up in our App component & we pass it down to d child component as a props */
 const AppComponent = ({ Component, pageProps, currentUser }) => {
     return<div>
         <Header currentUser={currentUser} />
-        <Component currentUser={currentUser} {...pageProps} />
+        <div className="container">
+            <Component currentUser={currentUser} {...pageProps} />
+        </div>
     </div>;
 };
 
@@ -33,7 +34,7 @@ AppComponent.getInitialProps = async appContext => {
     /**we then assign d result of that getInitialProps() function to pageProps variable & return it */
     return {
         pageProps,
-        ...data //currentUser object in inside data, we destructured it here to get access to it above
+        ...data //currentUser object in inside data, we spread it here to get access to it above
     };
 };
 
