@@ -1,8 +1,7 @@
 import express, {Request, Response} from 'express';
 import { body} from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest} from '../middlewares/validate-request';
+import {BadRequestError, validateRequest} from '@exchangepoint/common';
 import { User } from '../models/user';
 import {Password} from '../services/password';
 
@@ -13,7 +12,7 @@ router.post('/api/users/signin', [
             .isEmail().withMessage('Email must be valid'),
         body('password')
             .trim()
-            .notEmpty().withMessage('You must supply a passord')
+            .notEmpty().withMessage('You must supply a password')
     ], validateRequest,
     async (req: Request, res: Response) => {
     
