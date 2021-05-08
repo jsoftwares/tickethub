@@ -5,7 +5,9 @@ import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 
 import useRequest from '../../hooks/use-request';
 
-const Signin = () => {
+const Signin = ({currentUser}) => {
+
+    currentUser && Router.push('/');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
