@@ -91,7 +91,7 @@ it('Disallows duplicate email ', async () => {
         .send({
             name: 'Jeffrey',
             email: 'jeff@test.com',
-            password: 'jeff123'
+            password: 'jeff1234'
         })
         .expect(201);
 
@@ -100,7 +100,7 @@ it('Disallows duplicate email ', async () => {
         .send({
             name: 'Jeffrey',
             email: 'jeff@test.com',
-            password: 'jeff123'
+            password: 'jeff1234'
         })
         .expect(400)
 });
