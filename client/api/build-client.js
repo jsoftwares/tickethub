@@ -10,7 +10,8 @@ const buildClient = ({ req }) => {
         // we are on the server
         return axios.create({
             // FORMAT http://SERVICENAME.NAMESPACE.svc.cluster.local
-            baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            // baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            baseURL: 'http://tickethub.exchangepointgroup.com/',
             headers: req.headers
         })
     } else {
