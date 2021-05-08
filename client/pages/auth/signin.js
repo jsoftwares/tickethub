@@ -1,13 +1,10 @@
 import {useState} from 'react';
-import  Router from 'next/router'
+import  Router from 'next/router';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
-
 
 import useRequest from '../../hooks/use-request';
 
-const Signin = ({currentUser}) => {
-
-    currentUser && Router.push('/');
+const Signin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
