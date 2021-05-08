@@ -2,7 +2,7 @@ import request from 'supertest';
 import {app} from '../../app';
 
 it('returns a 201 on successful signup', async () => {
-    request(app)
+    return request(app)
         .post('/api/users/signup')
         .send({
             email: 'jeff.ict@gmail.com',
@@ -14,7 +14,7 @@ it('returns a 201 on successful signup', async () => {
 });
 
 it('returns a 400 with an invalid email', async () => {
-    request(app)
+    return request(app)
         .post('/api/users/signup')
         .send({
             email: 'jeff.ict@',
@@ -22,6 +22,32 @@ it('returns a 400 with an invalid email', async () => {
             password: '123457'
         })
         .expect(400);
+});
+
+it('returns a 400 with an invalid password', async () => {
+    return request(app)
+      .post('/api/users/signup')
+      .send({
+        email: 'jeff.ict@gmail.com',
+        password: 'p'
+      })
+      .expect(400);
+});
+
+it('returns a 400 with missing email and password', async () => {
+    await request(app)
+        .post('/api/users/signup')
+        .send({
+        email: 'test@test.com'
+        })
+        .expect(400);
+
+await request(app)
+    .post('/api/users/signup')
+    .send({
+    password: 'alskjdf'
+    })
+    .expect(400);
 });
 
 describe('POST /api/users/signup', function() {
