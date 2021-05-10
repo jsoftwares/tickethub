@@ -12,7 +12,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: '/api/tickets/?(.*)'
+            path: /api/tickets/?(.*)
             backend:
               service:
                 name: tickets-srv
