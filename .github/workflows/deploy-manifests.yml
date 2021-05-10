@@ -17,4 +17,4 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save tickethub
       - run: kubectl delete -f infra/k8s && kubectl delete -f infra/k8s-prod
-      - run: kubectl create -f infra/k8s && kubectl apply -f infra/k8s-prod
+      - run: kubectl create -f infra/k8s && kubectl create -f infra/k8s-prod
