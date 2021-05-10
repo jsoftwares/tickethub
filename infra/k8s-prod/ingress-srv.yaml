@@ -11,8 +11,8 @@ spec:
     - host: tickethub.exchangepointgroup.com
       http:
         paths:
-          - pathType: Prefix
-            path: /api/tickets/?(.*)
+          - path: /api/tickets/?(.*)
+            pathType: Prefix
             backend:
               service:
                 name: tickets-srv
