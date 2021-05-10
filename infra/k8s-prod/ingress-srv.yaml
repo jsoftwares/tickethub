@@ -11,26 +11,33 @@ spec:
     - host: tickethub.exchangepointgroup.com
       http:
         paths:
-          - path: /api/users/?(.*)
+          - pathType: Prefix
+            path: '/api/tickets/?(.*)'
             backend:
-              serviceName: auth-srv
-              servicePort: 3000
-          - path: /api/tickets/?(.*)
-            backend:
-              serviceName: tickets-srv
-              servicePort: 3000
-          - path: /api/orders/?(.*)
-            backend:
-              serviceName: orders-srv
-              servicePort: 3000
-          - path: /api/payments/?(.*)
-            backend:
-              serviceName: payments-srv
-              servicePort: 3000
-          - path: /?(.*)
-            backend:
-              serviceName: client-srv
-              servicePort: 3000
+              service:
+                name: tickets-srv
+                port:
+                  number: 3000
+          # - path: /api/users/?(.*)
+          #   backend:
+          #     serviceName: auth-srv
+          #     servicePort: 3000
+          # - path: /api/tickets/?(.*)
+          #   backend:
+          #     serviceName: tickets-srv
+          #     servicePort: 3000
+          # - path: /api/orders/?(.*)
+          #   backend:
+          #     serviceName: orders-srv
+          #     servicePort: 3000
+          # - path: /api/payments/?(.*)
+          #   backend:
+          #     serviceName: payments-srv
+          #     servicePort: 3000
+          # - path: /?(.*)
+          #   backend:
+          #     serviceName: client-srv
+          #     servicePort: 3000
 ---
 apiVersion: v1
 kind: Service
